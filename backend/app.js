@@ -11,6 +11,13 @@ app.use(express.json());
 
 app.use(helmet());
 
+const logRequests = async (req, res, next) => {
+  console.log(`${req.method}`);
+  next();
+}  
+
+app.use(logRequests());
+
 app.use("/api", require("./routes/api"));
 
 mongoose
